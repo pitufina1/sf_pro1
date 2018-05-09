@@ -19,11 +19,10 @@
 	    {% endfor %}
 	</ul>
 
-	<ul>
-	    {% for ingrediente in ingredientes %}
-	        <li>{{ ingrediente|lower }}</li>
-	    {% endfor %}
-	</ul>
+	<a href="{{ path('pizza_mostrar') }}"> Mostrar </a><br>
+	<a href="{{ path('pizza_nuevo') }}"> Nuevo </a><br>
+	<a href="{{ path('pizza_editar') }}"> Editar </a><br>
+
 
 </div>
 {% endblock %}
