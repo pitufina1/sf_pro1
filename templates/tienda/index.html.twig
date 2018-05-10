@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<h1> Empleados </h1>
+    <ul>
+	    {% for empleado in empleados %}
+	        <li><a href="{{ path('tienda_detalle', {'id': loop.index0}) }}">{{empleado}}</a></li>
+	    {% endfor %}
+	</ul>
+
+{% endblock %}

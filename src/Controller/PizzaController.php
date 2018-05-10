@@ -5,10 +5,13 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+	/**
+     * @Route("/pizza")
+     */
 class PizzaController extends Controller
 {
     /**
-     * @Route("/pizza", name="pizza")
+     * @Route("", name="pizza")
      */
     public function index()
     {
@@ -22,7 +25,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @Route("/pizza/nuevo", name="pizza_nuevo")
+     * @Route("/nuevo", name="pizza_nuevo")
      */
     public function nuevaPizza()
     {
@@ -32,7 +35,7 @@ class PizzaController extends Controller
     }
 
 	/**
-     * @Route("/pizza/editar", name="pizza_editar")
+     * @Route("/editar", name="pizza_editar")
      */
     public function editarPizza()
     {
@@ -43,7 +46,7 @@ class PizzaController extends Controller
     }
 
 	/**
-     * @Route("/pizza/mostrar", name="pizza_mostrar")
+     * @Route("/mostrar", name="pizza_mostrar")
      */
     public function mostrarPizza()
     {
@@ -53,7 +56,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @Route("/pizza/calcular/{precio}", name="pizza_calcular", requirements={"precio"="\d+""})
+     * @Route("/calcular/{precio}", name="pizza_calcular", requirements={"precio"="\d+"})
      */
     public function calcularPizza($precio)
     {	
