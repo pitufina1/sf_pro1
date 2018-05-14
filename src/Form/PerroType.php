@@ -15,6 +15,7 @@ class PerroType extends AbstractType
         $builder
             ->add('nombre', null, array('required'=> true, 'empty_data' => 'Nombre', 'attr' => array('class' => 'campos')))
             ->add('raza')
+            ->add('edad')
             ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success')))
         ;
     }

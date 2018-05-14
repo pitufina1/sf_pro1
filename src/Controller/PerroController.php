@@ -13,30 +13,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	 */
 class PerroController extends Controller
 {
-    private $vectorperros = array();
-
-    private function cargarDatos () {
-        $this->vectorperros [] = (new Perro()) ->setNombre("Lassie") ->setRaza("Labrador");
-        $this->vectorperros [] = (new Perro()) ->setNombre("Curro") ->setRaza("Collie");
-        $this->vectorperros [] = (new Perro()) ->setNombre("Cobbie") ->setRaza("Chiguagua");
-
-        $p1 = new Perro();
-        $p1 ->setNombre("Trumpy");
-        $p1 ->setRaza("AlaskaMalamute");
-        $this->vectorperros[] = $p1;
-
-    }
 
     /**
      * @Route("/lista", name="perro_lista")
      */
     public function listado()
     {
-    	//Conseguir desde la base de datos
-        $this->cargarDatos();
-        dump ($this->vectorperros);
+        $repo = $this->getDoctrine()->getRepository(Perro::class);
+        
+        $vectorperros = $repo->findAll();
+        
+        dump ($vectorperros);
         return $this->render ('perro/index.html.twig', [
-            'vectorperros' =>  $this->vectorperros,
+            'vectorperros' =>  $vectorperros,
         ]);
     }
 
