@@ -13,9 +13,8 @@ class PersonaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre', null, array('required'=> true, 'empty_data' => 'Nombre', 'attr' => array('class' => 'campos')))
-            ->add('edad')
-            ->add('telefono')
+            ->add('nombre')
+            ->add('raza')
             ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success'),
             ))
         ;
@@ -24,7 +23,7 @@ class PersonaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Persona::class,
+            'data_class' => Perro::class,
         ]);
     }
 }
