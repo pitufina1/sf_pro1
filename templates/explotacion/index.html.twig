@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Listado de Explotación </h1>
+<ul>
+	{% for explotacion in explotaciones %}
+	<li> {{ explotacion.latitud }} - {{ explotacion.longitud }} - {{ explotacion.propietario }} - {{ explotacion.numanimales }} </li>
+	{% endfor %}
+</ul>
+<a href="{{ path('explotacion_nuevo') }}"> Añadir explotación </a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Listado de Productos </h1>
+<ul>
+	{% for producto in productos %}
+	<li> {{ producto.nombre }} - 
+		{{ producto.precio}} - 
+		{{ producto.categoria.nombre}} - 
+		{{ dump(producto.categoria) }}
+	</li>
+	{% endfor %}
+</ul>
+
+{{ dump(productos) }}
+
+
+
+<a href="{{ path('producto_nuevo') }}"> Añadir producto </a>
+<a href="{{ path('categoria_lista') }}"> Lista de categorias </a>
+
+
+{% endblock %}

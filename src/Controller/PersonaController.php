@@ -24,15 +24,29 @@ class PersonaController extends Controller
 
     	if ($formu->isSubmitted()) {
 
-    		dump ($persona);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($persona);
+            $em->flush();
+            
+            return $this->redirectToRoute('persona_lista');
+      	}
 
-    		return $this->render('persona/final.html.twig', [
-        	]);
-    	}
-
-
-        return $this->render('persona/index.html.twig', [
+            return $this->render('persona/nuevo.html.twig', [
             'formulario' => $formu ->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/lista", name="persona_lista")
+     */
+    public function listado()
+    {
+        $repo = $this->getDoctrine()->getRepository(Persona::class);
+        
+        $personas = $repo->findAll();
+        
+            return $this->render ('persona/index.html.twig', [
+            'personas' =>  $personas,
         ]);
     }
 }
