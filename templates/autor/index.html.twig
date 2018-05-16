@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Autores Literarios </h1>
+<ul>
+	{% for autor in autores %}
+	<li> {{ autor.nombre }} - {{ autor.premio }} - {{ autor.edad }} </li>
+	{% endfor %}
+</ul>
+<a href="{{ path('autor_nuevo') }}"> Añadir Autor </a>
+
+{% endblock %}
