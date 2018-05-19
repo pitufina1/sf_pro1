@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('build/appstyle.css') }}">
+{% endblock %}
+
+
 {% block body %}
 
 <h1> Listado de Productos </h1>
@@ -18,7 +24,19 @@
 
 
 <a href="{{ path('producto_nuevo') }}"> Añadir producto </a>
-<a href="{{ path('categoria_lista') }}"> Lista de categorias </a>
+<a href="{{ path('categoria_lista') }}"> Lista de categorias </a><p></p>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Alta Nuevo Producto
+</button>
 
+	{% include 'producto/modal.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+
+	<script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}

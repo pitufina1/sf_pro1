@@ -22,7 +22,7 @@ class ProductoType extends AbstractType
                 'choice_label' => function ($categoria) {
                     return $categoria->getNombre();
             }))
-            ->add('añadir producto', SubmitType::class, array('attr' => array('class' => 'btn btn-success'),
+            ->add('guardar', SubmitType::class, array('attr' => array('class' => 'btn btn-success'),
             ))
         ;
     }
