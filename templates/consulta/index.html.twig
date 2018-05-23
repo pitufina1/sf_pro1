@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Listado de Consultas </h1>
+<ul>
+	{% for consulta in consultas %}
+	<li> {{ consulta.titulo }} - {{ consulta.fechahora|date('Y-m-d') }} - {{ consulta.descripcion }} - {{ consulta.importe }} </li>
+	{% endfor %}
+</ul>
+<a href="{{ path('consulta_nuevo') }}"> Añadir Consulta </a>
+
+{% endblock %}

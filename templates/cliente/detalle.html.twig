@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> Listado de Mascotas </h1>
+
+<li> {{ mascota.nombre }} - {{ mascota.animal }} - {{ mascota.fechanac }} </li>
+
+<ul>
+	{% for consulta in mascota.consultas %}
+	<li> {{ consulta.titulo }} - {{ consulta.fechahora|date("m/d/Y") }} - {{ consulta.descripcion }} - {{ consulta.importe }}</li>
+	{% endfor %}
+</ul>
+<a href="{{ path('mascota_nuevo') }}"> Añadir Mascota </a>
+<a href="{{ path('mascota_nuevo') }}"> Añadir Consulta </a>
+
+{% endblock %}
