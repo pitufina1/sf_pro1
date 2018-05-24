@@ -2,16 +2,29 @@
 
 {% block body %}
 
-<h1> Listado de Mascotas </h1>
+<h1> Listado de Clientes </h1>
 
-<li> {{ mascota.nombre }} - {{ mascota.animal }} - {{ mascota.fechanac }} </li>
+<li> {{ cliente.nombre }} - {{ cliente.direccion }} - {{ cliente.cp }} - {{ cliente.ciudad }}</li>
 
-<ul>
-	{% for consulta in mascota.consultas %}
-	<li> {{ consulta.titulo }} - {{ consulta.fechahora|date("m/d/Y") }} - {{ consulta.descripcion }} - {{ consulta.importe }}</li>
-	{% endfor %}
-</ul>
-<a href="{{ path('mascota_nuevo') }}"> Añadir Mascota </a>
-<a href="{{ path('mascota_nuevo') }}"> Añadir Consulta </a>
+	<ul>
+		{% for mascota in cliente.mascotas %}
+		<li> 
+			{{ mascota.nombre }} - {{ mascota.animal }} - {{ mascota.fechanac|date("m/d/Y") }} 
+
+			</ul>
+			{% for consulta in mascota.consultas %}
+				<li> 
+				{{ consulta.titulo }} - {{ consulta.descripcion }} - {{ consulta.fechahora|date("m/d/Y") }} {{ consulta.importe }} </li>
+
+			{% endfor %}
+			</ul>
+		</li>
+
+		{% endfor %}
+	</ul>
+
+<a href="{{ path('cliente_detalle',{'id': 1}) }}"> Añadir Mascota </a>
+
+{{ dump(cliente) }}
 
 {% endblock %}

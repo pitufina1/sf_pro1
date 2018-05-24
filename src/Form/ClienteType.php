@@ -19,11 +19,6 @@ class ClienteType extends AbstractType
             ->add('direccion')
             ->add('cp')
             ->add('ciudad')
-            ->add('mascota',EntityType::class,array(
-                'class' => Mascota::class,
-                'choice_label' => function ($mascota) {
-                    return $mascota->getNombre();
-            }))
             ->add('guardar', SubmitType::class, array('attr' => array('class' => 'btn btn-success'),
             ))
         ;

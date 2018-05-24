@@ -5,7 +5,12 @@
 <h1> Listado de Clientes </h1>
 <ul>
 	{% for cliente in clientes %}
-	<li> {{ cliente.nombre }} - {{ cliente.direccion }} - {{ cliente.cp }} - {{ cliente.ciudad }} </li>
+	<li> 
+		{{ cliente.nombre }} - 
+		{{ cliente.direccion }} - 
+		{{ cliente.cp }} - 
+		{{ cliente.ciudad }} 
+	</li>
 	{% endfor %}
 </ul>
 <a href="{{ path('cliente_nuevo') }}"> Añadir Cliente </a>

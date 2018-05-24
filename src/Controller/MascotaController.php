@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Mascota;
 use App\Entity\Cliente;
 use App\Form\MascotaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 	/**
      * @Route("/mascota")

@@ -10,6 +10,8 @@ Encore
 
     // will create public/build/app.js and public/build/app.css
     .addEntry('app', './assets/js/app.js')
+    .addEntry('midatatable', './assets/js/midatatable.js')
+
     .addStyleEntry('appstyle', './assets/css/app.css')
 
 

@@ -7,9 +7,13 @@ use App\Form\ClienteType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-
-	/**
+	   /**
      * @Route("/cliente")
      */
 class ClienteController extends Controller
@@ -61,7 +65,33 @@ class ClienteController extends Controller
         $cliente = $repo->find($id);
                    
             return $this->render ('cliente/detalle.html.twig', [
-            'clientes' =>  $clientes,
+            'cliente' =>  $cliente,
         ]);
+    }
+
+    /**
+     * @Route("/jsonlist", name="cliente_jsonlist")
+     */
+    public function jsonClientes()
+    {
+
+        $encoder = new JsonEncoder();
+        $normalizer = new ObjectNormalizer();
+
+        $normalizer->setCircularReferenceHandler(
+            function ($object) {
+                return $object->getId();
+            }
+        );
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+
+        $repo = $this->getDoctrine()->getRepository(Cliente::class);
+        $clientes = $repo->findAll();
+        $jsonClientes = $serializer->serialize($clientes, 'json');        
+
+        $respuesta = new Response($jsonClientes);
+
+        return $respuesta;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Consulta;
+use App\Entity\Mascota;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
@@ -22,7 +24,11 @@ class ConsultaType extends AbstractType
             ))
             ->add('descripcion')
             ->add('importe')
-            ->add('mascota')
+            ->add('mascota',EntityType::class,array(
+                'class' => Mascota::class,
+                'choice_label' => function ($mascota) {
+                    return $mascota->getNombre();
+            }))
             ->add('guardar', SubmitType::class, array('attr' => array('class' => 'btn btn-success'),
             ))
         ;
