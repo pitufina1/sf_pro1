@@ -4,36 +4,48 @@ namespace App\Controller;
 
 use App\Entity\Cliente;
 use App\Form\ClienteType;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ClienteRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-	   /**
-     * @Route("/cliente")
-     */
+   /**
+ * @Route("/cliente")
+ */
 class ClienteController extends Controller
 {
+
+    /**
+    *@Route("/", name="cliente_index")
+    */
+    public function index(ClienteRepository $clienteRepository): Response
+    {
+        return $this->render('cliente/index.html.twig', [c'clientes' => $clienteRepository->findAll()]);
+    }
+
     /**
      * @Route("/nuevo", name="cliente_nuevo")
      */
-    public function index(Request $request)
+    public function nuevo(Request $request): Response
     {
     	$cliente = new Cliente ();
     	$formu = $this->createForm(ClienteType::class, $cliente);
     	$formu->handleRequest($request);
 
-    	if ($formu->isSubmitted()) {
+    	if ($formu->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($cliente);
             $em->flush();
             
-            return $this->redirectToRoute('cliente_lista');
+            return $this->redirectToRoute('cliente_index');
       	}
 
             return $this->render('cliente/nuevo.html.twig', [
@@ -41,19 +53,6 @@ class ClienteController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/lista", name="cliente_lista")
-     */
-    public function listado()
-    {
-        $repo = $this->getDoctrine()->getRepository(Cliente::class);
-        
-        $clientes = $repo->findAll();
-        
-            return $this->render ('cliente/index.html.twig', [
-            'clientes' =>  $clientes,
-        ]);
-    }
 
     /**
      * @Route("/detalle/{id}", name="cliente_detalle", requirements={"id"="\d+"})

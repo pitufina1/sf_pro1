@@ -3,21 +3,34 @@
 namespace App\Controller;
 
 use App\Entity\Mascota;
-use App\Entity\Cliente;
 use App\Form\MascotaType;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\MascotaRepository;
+
+use App\Entity\Cliente;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-	/**
-     * @Route("/mascota")
-     */
+/**
+   * @Route("/mascota")
+   */
 class MascotaController extends Controller
 {
+
+    /**
+     * @Route("/", name="mascota_index")
+     */
+    public function index(MascotaRepository $mascotaRepository): Response
+    {
+        return $this->render('mascota/index.html.twig', ['mascotas' => $mascotaRepository->findAll()]);
+    }
+
     /**
      * @Route("/nuevo", name="mascota_nuevo")
      */
-    public function index(Request $request)
+    public function nuevo(Request $request)
     {
     	$mascota = new Mascota ();
     	$formu = $this->createForm(MascotaType::class, $mascota);
@@ -29,25 +42,11 @@ class MascotaController extends Controller
             $em->persist($mascota);
             $em->flush();
           
-            return $this->redirectToRoute('mascota_lista');
+            return $this->redirectToRoute('mascota_index');
       	}
 
             return $this->render('mascota/nuevo.html.twig', [
             'formulario' => $formu ->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/lista", name="mascota_lista")
-     */
-    public function listado()
-    {
-        $repo = $this->getDoctrine()->getRepository(Mascota::class);
-        
-        $mascotas = $repo->findAll();
-        
-            return $this->render ('mascota/index.html.twig', [
-            'mascotas' =>  $mascotas,
         ]);
     }
 

@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Perro;
 use App\Form\PerroType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
-	/**
-	 * @Route("/perro")
-	 */
+/**
+ * @Route("/perro")
+ */
 class PerroController extends Controller
 {
 

@@ -2,12 +2,15 @@
 
 {% block body %}
 
-<h1> Categoría </h1>
+<h1> Listado de Categorías </h1>
 <ul>
 	{% for categoria in categorias %}
-	<li> {{ categoria.nombre}} </li>
+		<li> 
+			{{ categoria.nombre}} 
+		</li>
 	{% endfor %}
 </ul>
+
 <a href="{{ path('categoria_nuevo') }}"> Añadir categoría </a>
 
 {% endblock %}

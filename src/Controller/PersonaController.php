@@ -8,9 +8,9 @@ use App\Form\PersonaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-	/**
-     * @Route("/persona")
-     */
+/**
+   * @Route("/persona")
+   */
 class PersonaController extends Controller
 {
     /**

@@ -5,9 +5,14 @@
 <h1> Listado de personas </h1>
 <ul>
 	{% for persona in personas %}
-	<li> {{ persona.nombre }} - {{ persona.edad }} - {{ persona.telefono }} - {{ persona.ciudad }} </li>
+		<li> {{ persona.nombre }} -
+			 {{ persona.edad }} -
+			 {{ persona.telefono }} -
+			 {{ persona.ciudad }} 
+		</li>
 	{% endfor %}
 </ul>
+
 <a href="{{ path('persona_nuevo') }}"> Añadir persona </a>
 
 {% endblock %}

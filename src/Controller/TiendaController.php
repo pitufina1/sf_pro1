@@ -5,12 +5,13 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-	/**
-     * @Route("/tienda")
-     */
+/**
+* @Route("/tienda")
+*/
 class TiendaController extends Controller
 {
 	const EMPLEADOS = array("Ángela", "Rita", "Pedro", "Erika", "Juan");
+
     /**
      * @Route("", name="tienda_empleados")
      */
@@ -30,8 +31,4 @@ class TiendaController extends Controller
             'empleado' => self::EMPLEADOS[$id]
         ]);
     }
-
-
-
 }
-

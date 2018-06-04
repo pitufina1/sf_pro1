@@ -6,13 +6,16 @@
 <ul>
 	{% for cliente in clientes %}
 	<li> 
+		{{ cliente.id }} - 
 		{{ cliente.nombre }} - 
 		{{ cliente.direccion }} - 
 		{{ cliente.cp }} - 
 		{{ cliente.ciudad }} 
+			<a href="{{ path('cliente_detalle',{'id': cliente.id}) }}"> Ir al detalle </a>
 	</li>
 	{% endfor %}
 </ul>
+
 <a href="{{ path('cliente_nuevo') }}"> Añadir Cliente </a>
 
 {% endblock %}
